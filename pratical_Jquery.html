@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">i
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        
+                            <div class=" border rounded " >
+                                <h3 class="text-secondary p-2" style="text-align: right;" id="result">0</h3>
+                            </div>
+                        
+                        <div class=" form-row mt-3">
+                                <div class="col-6">
+                                    <input type="number" id="input1" class="form-control">
+                                </div>
+                                <div class="col-6" >
+                                    <input type="number" id="input2" class="form-control">
+                                </div>
+                                <div class="mt-3 col-6">
+                                    <button class="btn btn-outline-primary w-100" id="btn">Calculate</button>
+                                </div>
+                                <div class="mt-3 col-6">
+                                    <button class="btn btn-outline-primary w-100" id="save">save</button>
+                                </div>
+                        </div>
+                      <ul id="getresult" class="mt-3">
+                        
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $("#btn").click(function () {
+            let input1=Number($("#input1").val());
+            let input2=Number($("#input2").val());
+            $("#result").html(`${input1}+${input2}=${input1+input2}`);
+           
+        });
+        $("#save").click(function () {
+            
+            let r=  $("#result").html();
+            $("#getresult").append(`<li>${r}</li>`);
+            $("#input1,#input2").val("");
+            $("#result").html(0);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./text.css">
+</head>
+<body>
+    <div id="app">
+        <h4>{{title}}</h4>
+        <!-- array ko for nae pat tr -->
+        <!-- <ul >
+            <li v-for="x in item">{{x}}</li>
+        </ul> -->
+        <ul>
+            
+            <li v-for="item in items">
+                <button @click="item.Stock +=1">Add</button>
+                <input type="number" v-model.number="item.Stock" min="0">
+                <button @click="item.Stock -=1">Minus</button>
+                {{item.name}}
+                {{item.Stock}}
+              <b v-if="item.Stock ===0">Out Of Stock</b>
+
+            </li>
+            <h4>TotoalStock:{{getTotalStock}}</h4>
+            <hr>
+            <input type="text" v-model="itemName">
+            <input type="number" v-model.number="itemStock">
+            <button @click="add()">add</button>
+        </ul>
+    </div>  
+   
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        let app=new Vue(
+            {
+               el:"#app",
+               data:{
+                   
+                   title:"Mini Project",
+                   items:[
+                       {id:1,name:"Book",Stock:5},
+                       {id:2,name:"Pen",Stock:0},
+                       {id:3,name:"Ruler",Stock:3}
+                   ],
+                   itemName:"",
+                   itemStock:""
+               },
+               computed:{
+                   getTotalStock(){
+                            return this.items.reduce((sum,el)=>sum+el.Stock,0)
+                   },
+                  
+               },
+               methods:{
+                   add(){
+                       let newitem={
+                           id:this.items.length+1,
+                           name:this.itemName,
+                           Stock:this.itemStock
+                       }
+                       this.items.push(newitem)
+                   }
+               }
+            
+            }
+        )
+    </script>
+</body>
+</html>

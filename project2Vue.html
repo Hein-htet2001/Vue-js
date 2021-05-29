@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-8">
+                <div class="card p-2 mt-5">
+                  <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 py-3 d-flex justify-content-between align-items-center">
+                                <h4 id="display" >{{display}}</h4> 
+                                <button class="btn btn-outline-danger" id="delbtn" @click="del()">Del</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="voiceContainer">
+                        <div class="col-3" v-for="v in voice">
+                            <div :class="['border rounded py-3 mb-3 text-center ourvoice',{'bg-primary':v.ispress}]" @click="[v.ispress=true,run(v.name)]">
+                                <h4>{{v.name}}</h4>
+                            </div>
+          </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./vue.js"></script>
+    <script>
+        // let voice=["We","want","respect","votes","our","Release","leader","Democracy"]
+        let app=new Vue({
+            el:"#app",
+            data:{
+                 display:"",
+                 voice:[
+                    {name:"We",ispress:false},
+                    {name:"want",ispress:false},
+                    {name:"respect",ispress:false},
+                    {name:"votes",ispress:false},
+                    {name:"our",ispress:false},
+                    {name:"Release",ispress:false},
+                    {name:"leader",ispress:false},
+                    {name:"Democracy",ispress:false}
+                   
+                 ]
+            },
+            methods:{
+                    run(x){
+                        this.display+=x+" ";
+                       
+                    },
+                    del(){
+                        this.display="";
+                        alert("Are You sure want to delete?");
+                        let newArr=[];
+                        this.voice.map(el=>{
+                            newArr.push({name:el.name,ispress:false})
+                        })
+                        this.voice=newArr
+                    }
+            }
+        });
+    </script>
+</body>
+</html>

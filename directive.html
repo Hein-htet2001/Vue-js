@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <a href="./photo/she.png" download>DownLoad here</a>
+    <div id="app">
+        <h3 v-bind:title="name.split('').join('')" :style="{fontSize:fz+'px',color:color}">{{name}}</h3>
+        <img :src="img1" :class="['c',{rotate:age<18,move:age<18}]" alt="">
+        <a :href="h">Go</a>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+            let app=new Vue({
+                el:"#app",
+                data:{
+                    name:"Hein Htet Zaw",
+                    age:8,
+                    img1:"./photo/she1.jpg",
+                    rotate:"rotate",
+                    move:"move",
+                    h:"https://www.google.com/",
+                    fz:30,
+                    color:"red"
+                }
+            })
+    </script>
+</body>
+</html>

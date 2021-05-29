@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        } 
+
+/* Firefox */
+            input[type=number] {
+            -moz-appearance: textfield;
+            } 
+        table{
+            width: 400px;
+            border-collapse: collapse;
+            margin-top: 20px;
+           
+        }
+        tr td{
+            border: solid  2px ;
+            padding: 15px;
+            
+        }
+       /* td:nth-child(2){
+           background-color: wheat;
+       } */
+    </style>
+</head>
+<body>
+   
+    <div id="vue" class="mx-4 col-12" >
+        <h1 class=" text-primary">Item List <span>{{items.length}}</span></h1>
+       
+        <div class=" form-row ">
+                    <div>
+                        <input type="text" class="form-control" placeholder="Add Fruit" v-model="newitem" >
+                    </div>
+
+                    <div>
+                    <input type="number" placeholder="Price"  class="custom-select ml-2 "  v-model.number="newprice" @keyup.enter="addbtn()" >
+                    </div>
+            
+                <button @click="addbtn()" class="btn btn-primary ml-3" style="margin-left: 10px;">Add</button>
+        </div>  
+        
+     <table>
+         <thead>
+             <tr>
+                 <td>No</td>
+                 <td>Item Name</td>
+                 <td>Price</td>
+                 <td>#</td>
+             </tr>
+         </thead>
+         <tbody>
+             <tr c @dblclick="edit()" v-for="item in items">
+                 <td>{{item.id}}</td>
+                 <td>{{item.fruit}}</td>
+                 <td>{{item.price}}MMK</td>
+                 <td><button class="btn btn-outline-danger" @click="delbtn(item.id)">Del</button></td>
+             </tr>
+         </tbody>
+         <tfoot>
+             <tr>
+                 <td>Total Price</td>
+                 <td colspan="3" style="text-align: center;"> {{totalresuilt}}MMK</td>
+             </tr>
+         </tfoot>
+     </table>
+
+
+            
+    </div>
+    
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+            let vue=new Vue({
+                el:"#vue",
+                data:{
+                    newitem:"",
+                    newprice:"",
+                    items:[
+                    {
+                        id:1,
+                        fruit:"Apple",
+                        price:"300"
+                    },
+                    {
+                        id:2,
+                        fruit:"Orange",
+                        price:"150"
+                    },
+                    {
+                        id:3,
+                        fruit:"Grape",
+                        price:"100"
+                    },
+                ]
+                },
+                computed:{
+                        totalresuilt(){
+                          return  this.items.reduce((sum,el)=>Number(sum)+Number(el.price),0)
+                        }
+                },
+                methods:{
+                    addbtn(){
+                         this.items.push(
+                            {id:this.items.length+1,
+                            fruit:this.newitem,
+                                price:this.newprice   
+                            });
+                           this.newitem="",
+                           this.newprice=""
+                    },
+                    
+                delbtn(x){
+                 this.items=  this.items.filter(el=>el.id !==x)
+                }
+                }
+                
+            })
+    </script>
+</body>
+</html>

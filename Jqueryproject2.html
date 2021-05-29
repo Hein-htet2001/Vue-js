@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="card p-2 mt-5">
+                  <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 py-3 d-flex justify-content-between align-items-center">
+                                <h4 id="display" ></h4> 
+                                <button class="btn btn-outline-danger" id="delbtn">Del</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="voiceContainer">
+                       
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./jquery-3.3.1.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let voice=["We","want","respect","votes","our","Release","leader","Democracy"];
+       voice.map(el=>{
+           $("#voiceContainer").append(`
+           <div class="col-3">
+                            <div class="border rounded py-3 mb-3 text-center ourvoice" id="add" >
+                                <h4>${el}</h4>
+                            </div>
+          </div>
+           `);
+           
+       });
+        $(".ourvoice").click(function () {
+            let currentText=$(this).text();
+            $("#display").append(currentText)
+            $(this).addClass("bg-primary")
+           
+        });
+       $("#delbtn").click(function () {
+        $("#display").empty();
+        $(".ourvoice").removeClass("bg-primary")
+        alert("Are you sure Want to delete?")
+       });
+    </script>
+</body>
+</html>

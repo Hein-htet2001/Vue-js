@@ -1,0 +1,13 @@
+img{
+    height: 300px;
+}
+.rotate{
+    filter: blur(5px);
+    /* transform: rotate(20deg); */
+}
+.move{
+    margin-left: 400px;
+}
+.c{
+    margin-top: 400px;
+}
